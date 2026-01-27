@@ -2,11 +2,8 @@ productos={
 }
 
 def main():
-      while(True):
-        mostrar_catalogo()
-        eliminar_productos()
-        mostrar_catalogo()
-        
+    print("Menú interactivo")
+    print
         
         
 def añadir_productos():  
