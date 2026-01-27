@@ -1,12 +1,11 @@
 productos={
 }
 
-
+menu=True
 
 def main():
-    seleccionador=0
-    menu=True
-
+    global menu #boolean creado para poder cerrar el programa
+    opcion=0
     while menu:
         print("Menú interactivo")
         print("_______________________")
@@ -17,29 +16,37 @@ def main():
         print("5. Estadisticas")
         print("6. Busquedas")
         print("7. Salir")
+        try:
+            opcion=int(input("Introduzca numero asociado a la accion que quiere hacer: "))
+            seleccionador(opcion)
+            if opcion ==7: menu=False
+        except ValueError:
+            print("No has metido un precio en formato numerico")
+       
+   
 
-        seleccionador=int(input("Introduzca numero asociado a la accion que quiere hacer: "))
-
-
-        if seleccionador == 1:
-            print("Funcion 1")    
-        elif seleccionador==2:
-            print("Funcion 2")
-        elif seleccionador==3:
-            añadir_productos()
-        elif seleccionador==4:
-            mostrar_catalogo()
-        elif seleccionador==5:
-            print("Funcion 5")
-        elif seleccionador==6:
-            print("Funcion 6")
-        elif seleccionador==7:
-            print("Gracias por usar nuestra aplicacion")
-            menu=False
-        else:
-            print("Opcion no asociada a ninguna accion")
-    
         
+    
+def seleccionador(numero):
+    if numero == 1:
+        print("Funcion 1")    
+    elif numero==2:
+        print("Funcion 2")
+    elif numero==3:
+        añadir_productos()
+    elif numero==4:
+        mostrar_catalogo()
+    elif numero==5:
+        print("Funcion 5")
+    elif numero==6:
+        print("Funcion 6")
+    elif numero==7:
+        print("Gracias por usar nuestra aplicacion")
+    else:
+        print("Opcion no asociada a ninguna accion")
+
+
+
 def añadir_productos():  
     nombre=str(input("Ingrese el nombre de su producto: "))
     if nombre in productos:
@@ -48,7 +55,7 @@ def añadir_productos():
         try:
             precio_cadena=str(input("Introduzca el precio: "))
             precio_numero=float(precio_cadena) #esto convierte a float una cadena ya que no existe variables double en python
-            productos[nombre]=precio_numero #aln convertirlo podemos comprobar si el precio es numerico 
+            productos[nombre]=precio_numero #al convertirlo podemos comprobar si el precio es numerico 
         except ValueError:
             print("No has metido un precio en formato numerico")
        
