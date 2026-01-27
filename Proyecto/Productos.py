@@ -4,9 +4,9 @@ productos={  'manzana':10.6,
 
 def main():
       while(True):
-        print(productos)
-        modificar_precios()
-        print(productos)
+        mostrar_catalogo()
+        eliminar_productos()
+        mostrar_catalogo()
         
         
         
@@ -29,10 +29,15 @@ def modificar_precios():
         precio=int(input("Introduzca el nuevo precio: "))
         productos[nombre]=precio
     
+def eliminar_productos():
+    nombre=str(input("Ingrese el nombre del producto a eliminar: "))
+    if nombre not in productos:
+        print("Este producto no se encuentra registrado en la base de datos")
+    else:
+        del productos[nombre]
     
-    
-    
-    
+def mostrar_catalogo():
+    print(productos)
     
     
 if __name__=="__main__":
