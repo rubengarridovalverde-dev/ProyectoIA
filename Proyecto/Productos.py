@@ -3,7 +3,7 @@ productos={  'manzana':10.6,
 }
 
 def main():
-      
+      while(True):
         print(productos)
         modificar_precios()
         print(productos)
@@ -12,10 +12,12 @@ def main():
         
 def añadir_productos():  
     nombre=str(input("Ingrese el nombre de su producto: "))
+    if nombre in productos:
+        print("Este producto ya se encuentra en la base de datos, si desea eliminar o modificar precio use la opcion correspondiente")
+    else: 
+        precio=int(input("Introduzca el precio: "))
     
-    precio=int(input("Introduzca el precio: "))
-    
-    productos[nombre]=precio
+        productos[nombre]=precio
    
     
 def modificar_precios():
