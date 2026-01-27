@@ -1,5 +1,4 @@
-productos={  'manzana':10.6,
-           
+productos={
 }
 
 def main():
@@ -16,12 +15,10 @@ def añadir_productos():
         print("Este producto ya se encuentra en la base de datos, si desea eliminar o modificar precio use la opcion correspondiente")
     else: 
         precio=int(input("Introduzca el precio: "))
-    
         productos[nombre]=precio
    
     
-def modificar_precios():
-    
+def modificar_precios():  
     nombre=str(input("Ingrese el nombre de su producto al cual quiera cambiar el precio: "))
     if nombre not in productos:       
         print("Este producto no se encuentra registrado en la base de datos, si quieres agregar use la opcion de añadir productos")
