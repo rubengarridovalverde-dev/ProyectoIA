@@ -1,11 +1,44 @@
 productos={
 }
 
+
+
 def main():
-    print("Menú interactivo")
-    print
-    añadir_productos()
-        
+    seleccionador=0
+    menu=True
+
+    while menu:
+        print("Menú interactivo")
+        print("_______________________")
+        print("1. Añadir Usuarios")
+        print("2. Mostrar Usuarios")
+        print("3. Añadir Producto")
+        print("4. Mostrar Productos")
+        print("5. Estadisticas")
+        print("6. Busquedas")
+        print("7. Salir")
+
+        seleccionador=int(input("Introduzca numero asociado a la accion que quiere hacer: "))
+
+
+        if seleccionador == 1:
+            print("Funcion 1")    
+        elif seleccionador==2:
+            print("Funcion 2")
+        elif seleccionador==3:
+            añadir_productos()
+        elif seleccionador==4:
+            mostrar_catalogo()
+        elif seleccionador==5:
+            print("Funcion 5")
+        elif seleccionador==6:
+            print("Funcion 6")
+        elif seleccionador==7:
+            print("Gracias por usar nuestra aplicacion")
+            menu=False
+        else:
+            print("Opcion no asociada a ninguna accion")
+    
         
 def añadir_productos():  
     nombre=str(input("Ingrese el nombre de su producto: "))
