@@ -1,6 +1,5 @@
-productos={
-}
-
+productos={}
+usuarios = []
 
 
 def main():
@@ -29,11 +28,9 @@ def main():
     
 def seleccionador(numero):
     if numero == 1:
-        print("Funcion 1")    
-         #poner aqui la opcion de añadir usuarios
+        añadir_usuario()
     elif numero==2:
-        print("Funcion 2")
-         #poner aqui la opcion de mostrar usuarios
+       mostrar_usuarios()
     elif numero==3:
         submenu_productos()      
     elif numero==4:
@@ -81,6 +78,25 @@ def seleccionador_productos(opcion):
     else:
         print("Opcion no asociada a ninguna accion")
 
+def añadir_usuario():  
+    try:
+        id_usuario = input("ID del usuario: ")
+        nombre = input("Nombre: ")
+        edad = int(input("Edad: "))
+        ciudad = input("Ciudad: ")
+        usuario = (id_usuario, nombre, edad, ciudad)
+        usuarios.append(usuario)
+        print("Usuario añadido correctamente")
+    except ValueError:
+        print("Error, la edad introducida no es un numero")
+    
+def mostrar_usuarios():
+    if not productos: 
+        print("No hay usuarios registrados")
+    else:
+        print("Lista de usuarios:")
+        print(usuarios)
+
 
 
 def añadir_productos():  
@@ -117,7 +133,9 @@ def eliminar_productos():
         del productos[nombre]
     
 def mostrar_catalogo():
-    print(productos)
+    if not productos: 
+        print("No hay productos que mostrar")
+    else: print(productos)
     
     
 if __name__=="__main__":
