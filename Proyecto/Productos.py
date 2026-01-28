@@ -1,10 +1,10 @@
 productos={
 }
 
-menu=True
+
 
 def main():
-    global menu #boolean creado para poder cerrar el programa
+    menu=True #boolean creado para poder cerrar el programa
     opcion=0
     while menu:
         print("Menú interactivo")
@@ -51,17 +51,20 @@ def seleccionador(numero):
 
 
 def submenu_productos():
-    print("Modificar Productos")
-    print("_______________________")
-    print("1. Añadir Productos")
-    print("2. Eliminar Productos")
-    print("3. Modificar Precios")
-
-    try:
-        opcion_productos=int(input("Introduzca numero asociado a la accion que quiere hacer: "))
-        seleccionador_productos(opcion_productos)
-    except ValueError:
-        print("No has metido un precio en formato numerico")
+    submenu=True
+    while submenu:
+        print("Modificar Productos")
+        print("_______________________")
+        print("1. Añadir Productos")
+        print("2. Eliminar Productos")
+        print("3. Modificar Precios")
+        print("4. Volver al menu principal")
+        try:
+            opcion_productos=int(input("Introduzca numero asociado a la accion que quiere hacer: "))
+            seleccionador_productos(opcion_productos)
+            if opcion_productos ==4: submenu=False
+        except ValueError:
+            print("No has metido un precio en formato numerico")
  
  
        
@@ -73,6 +76,8 @@ def seleccionador_productos(opcion):
         eliminar_productos()
     elif opcion==3:
         modificar_precios()
+    elif opcion==4:
+        print("")
     else:
         print("Opcion no asociada a ninguna accion")
 
