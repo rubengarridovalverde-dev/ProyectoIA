@@ -38,8 +38,7 @@ def seleccionador(numero):
     elif numero==4:
         mostrar_catalogo()
     elif numero==5:
-        print("Funcion 5")
-         #poner aqui la opcion de estadisticas
+        estadisticas_usuarios()
     elif numero==6:
         print("Funcion 6")
          #poner aqui la opcion de busquedas
@@ -102,7 +101,27 @@ def mostrar_usuarios():
         print("Lista de usuarios:")
         print(usuarios)
 
+def estadisticas_usuarios():
+    if len(usuarios) == 0:
+        print("No hay usuarios registrados\n")
+        return
 
+    total = len(usuarios)
+
+    suma_edades = 0
+    for u in usuarios:
+        suma_edades += u[2]
+
+    edad_media = suma_edades / total
+
+    mas_joven = min(usuarios, key=lambda x: x[2])
+    mas_mayor = max(usuarios, key=lambda x: x[2])
+
+    print("Total de usuarios:", total)
+    print("Edad media:", edad_media)
+    print("Usuario más joven:", mas_joven)
+    print("Usuario más mayor:", mas_mayor)
+    print()
 
 def añadir_productos():  
     nombre=str(input("Ingrese el nombre de su producto: "))
