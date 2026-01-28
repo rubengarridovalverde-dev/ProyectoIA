@@ -38,7 +38,7 @@ def seleccionador(numero):
     elif numero==4:
         mostrar_catalogo()
     elif numero==5:
-        estadisticas_usuarios()
+        estadisticas()
     elif numero==6:
         print("Funcion 6")
          #poner aqui la opcion de busquedas
@@ -101,27 +101,33 @@ def mostrar_usuarios():
         print("Lista de usuarios:")
         print(usuarios)
 
-def estadisticas_usuarios():
+def estadisticas():
     if len(usuarios) == 0:
         print("No hay usuarios registrados\n")
         return
+    elif not productos:
+        print("No hay productos registrados")
+    else:
+        total = len(usuarios)
 
-    total = len(usuarios)
+        suma_edades = 0
+        for u in usuarios:
+            suma_edades += u[2]
 
-    suma_edades = 0
-    for u in usuarios:
-        suma_edades += u[2]
+        edad_media = suma_edades / total
 
-    edad_media = suma_edades / total
-
-    mas_joven = min(usuarios, key=lambda x: x[2])
-    mas_mayor = max(usuarios, key=lambda x: x[2])
-
-    print("Total de usuarios:", total)
-    print("Edad media:", edad_media)
-    print("Usuario más joven:", mas_joven)
-    print("Usuario más mayor:", mas_mayor)
-    print()
+        mas_joven = min(usuarios, key=lambda x: x[2])
+        mas_mayor = max(usuarios, key=lambda x: x[2])
+        
+        media = sum(productos.values()) / len(productos)
+        
+        print("Total de usuarios:", total)
+        print("Edad media:", edad_media)
+        print("Usuario más joven:", mas_joven)
+        print("Usuario más mayor:", mas_mayor)
+        print("Numero Total de productos",len(productos))
+        print("Precio medio de los productos",media)
+        print()
 
 def añadir_productos():  
     nombre=str(input("Ingrese el nombre de su producto: "))
@@ -133,6 +139,7 @@ def añadir_productos():
             precio_cadena=str(input("Introduzca el precio: "))
             precio_numero=float(precio_cadena) #esto convierte a float una cadena ya que no existe variables double en python
             productos[nombre]=precio_numero #al convertirlo podemos comprobar si el precio es numerico 
+            print("Producto añadido")
         except ValueError:
             print("No has metido un precio en formato numerico")
        
@@ -150,6 +157,7 @@ def modificar_precios():
                 precio_cadena=str(input("Introduzca el nuevo precio: "))
                 precio_numero=float(precio_cadena) 
                 productos[nombre]=precio_numero 
+                print("Precio modificado")
             except ValueError:
                 print("No has metido un precio en formato numerico")
     
@@ -162,6 +170,7 @@ def eliminar_productos():
             print("Este producto no se encuentra registrado en la base de datos")
         else:
             del productos[nombre]
+            print("Producto eliminado")
     
 def mostrar_catalogo():
     if not productos: 
