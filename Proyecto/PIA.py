@@ -182,6 +182,8 @@ def modificar_precios():
     if not productos: 
         print("No hay productos registrados")
     else: 
+        print("Productos disponibles a modificar")
+        mostrar_catalogo()
         nombre=str(input("Ingrese el nombre de su producto al cual quiera cambiar el precio: "))
         if nombre not in productos:       
             print("Este producto no se encuentra registrado en la base de datos, si quieres agregar use la opcion de añadir productos")
@@ -198,6 +200,8 @@ def eliminar_productos():
     if not productos: 
         print("No hay productos registrados")
     else:
+        print("Productos disponibles a modificar")
+        mostrar_catalogo()
         nombre=str(input("Ingrese el nombre del producto a eliminar: "))
         if nombre not in productos:
             print("Este producto no se encuentra registrado en la base de datos")
