@@ -4,6 +4,7 @@ usuarios = []
 
 def main():
     menu=True #boolean creado para poder cerrar el programa
+    #menu principal en el que se expresa todas las posibilidades
     opcion=0
     while menu:
         print("")
@@ -29,6 +30,7 @@ def main():
         
     
 def seleccionador(numero):
+    #selector principal del menu donde se indica cada accion
     if numero == 1:
         añadir_usuario()
     elif numero==2:
@@ -41,7 +43,6 @@ def seleccionador(numero):
         estadisticas()
     elif numero==6:
         submenu_busquedas()
-         #poner aqui la opcion de busquedas
     elif numero==7:
         print("Gracias por usar nuestra aplicacion")
     else:
@@ -62,12 +63,12 @@ def submenu_productos():
             opcion_productos=int(input("Introduzca numero asociado a la accion que quiere hacer: "))
             print("")
             seleccionador_productos(opcion_productos)
-            if opcion_productos ==4: submenu=False
+            if opcion_productos == 4: submenu=False #boolean con funcion de cerra el submenu de productos
         except ValueError:
             print("No has metido un precio en formato numerico")
             
 def seleccionador_productos(opcion):
-    
+    #aqui se comprueba que hacer en cada opcion del submenu de productos
     if opcion==1:
         añadir_productos()
     elif opcion==2:
@@ -80,6 +81,7 @@ def seleccionador_productos(opcion):
         print("Opcion no asociada a ninguna accion")
         
 def submenu_busquedas():
+    #submenu de la opcion de busqueda 
     submenu=True
     while submenu:
         print("")
@@ -92,13 +94,13 @@ def submenu_busquedas():
             opcion_busqueda=int(input("Introduzca numero asociado a la accion que quiere hacer: "))
             print("")
             seleccionador_busqueda(opcion_busqueda)
-            if opcion_busqueda ==3: submenu=False
+            if opcion_busqueda == 3: submenu=False #este boolean sirve para cerrar el submenu
         except ValueError:
             print("No has metido un precio en formato numerico")
  
        
 def seleccionador_busqueda(opcion):
-    
+     #aqui se comprueba que hacer cada opcion del submenu busqueda
     if opcion==1:
         buscar_por_ciudad()
     elif opcion==2:
@@ -111,6 +113,10 @@ def seleccionador_busqueda(opcion):
 def añadir_usuario():  
     try:
         id_usuario = input("ID del usuario: ")
+        for u in usuarios: #aqui uso el mismo bucle que en buscar usuario por id para que no se creen dos con el mismo id
+            if u[0] == id_usuario:
+                print("El id ya se encuentra asociado")
+                return
         nombre = input("Nombre: ")
         edad = int(input("Edad: "))
         ciudad = input("Ciudad: ")
@@ -122,7 +128,7 @@ def añadir_usuario():
         print("Error, la edad introducida no es un numero")
     
 def mostrar_usuarios():
-    if not productos: 
+    if not usuarios: #este if hace que si no hay informacion en la base de datos sobre usuarios lo indique
         print("No hay usuarios registrados")
     else:
         print("Lista de usuarios:")
@@ -200,7 +206,7 @@ def eliminar_productos():
             print("Producto eliminado")
     
 def mostrar_catalogo():
-    if not productos: 
+    if not productos: #este if hace que si no hay informacion en la base de datos sobre productos lo indique
         print("No hay productos que mostrar")
     else: print(productos)
   
@@ -224,8 +230,8 @@ def comprobar_usuario():
         if u[0] == id_buscar:
             print("El usuario existe:")
             print(f"ID: {u[0]}, Nombre: {u[1]}, Edad: {u[2]}, Ciudad: {u[3]}\n")
-            return
-    print("El usuario no existe\n")  
+        else: 
+            print("El usuario no existe\n")  
     
 if __name__=="__main__":
     main()
