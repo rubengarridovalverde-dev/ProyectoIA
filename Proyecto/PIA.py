@@ -40,7 +40,7 @@ def seleccionador(numero):
     elif numero==5:
         estadisticas()
     elif numero==6:
-        print("Funcion 6")
+        submenu_busquedas()
          #poner aqui la opcion de busquedas
     elif numero==7:
         print("Gracias por usar nuestra aplicacion")
@@ -54,9 +54,9 @@ def submenu_productos():
         print("")
         print("Modificar Productos")
         print("_______________________")
-        print("1. Añadir Productos")
-        print("2. Eliminar Productos")
-        print("3. Modificar Precios")
+        print("1. Añadir productos")
+        print("2. Eliminar productos")
+        print("3. Modificar precios")
         print("4. Volver al menu principal")
         try:
             opcion_productos=int(input("Introduzca numero asociado a la accion que quiere hacer: "))
@@ -65,11 +65,9 @@ def submenu_productos():
             if opcion_productos ==4: submenu=False
         except ValueError:
             print("No has metido un precio en formato numerico")
- 
- 
-       
+            
 def seleccionador_productos(opcion):
-        
+    
     if opcion==1:
         añadir_productos()
     elif opcion==2:
@@ -77,6 +75,35 @@ def seleccionador_productos(opcion):
     elif opcion==3:
         modificar_precios()
     elif opcion==4:
+        print("")
+    else:
+        print("Opcion no asociada a ninguna accion")
+        
+def submenu_busquedas():
+    submenu=True
+    while submenu:
+        print("")
+        print("Busquedas y filtrados")
+        print("_______________________")
+        print("1. Buscar usuarios por ciudad")
+        print("2. Comprobar si existe usuario asociado a ID")
+        print("3. Volver al menu principal")
+        try:
+            opcion_busqueda=int(input("Introduzca numero asociado a la accion que quiere hacer: "))
+            print("")
+            seleccionador_busqueda(opcion_busqueda)
+            if opcion_busqueda ==3: submenu=False
+        except ValueError:
+            print("No has metido un precio en formato numerico")
+ 
+       
+def seleccionador_busqueda(opcion):
+    
+    if opcion==1:
+        buscar_por_ciudad()
+    elif opcion==2:
+        comprobar_usuario()
+    elif opcion==3:
         print("")
     else:
         print("Opcion no asociada a ninguna accion")
@@ -176,7 +203,29 @@ def mostrar_catalogo():
     if not productos: 
         print("No hay productos que mostrar")
     else: print(productos)
-    
+  
+def buscar_por_ciudad():
+    ciudad = input("Introduce la ciudad a buscar: ")
+    encontrados = [u for u in usuarios if u[3].lower() == ciudad.lower()]
+
+    if encontrados:
+        print(f"Usuarios en {ciudad}:")
+        for u in encontrados:
+            print(f"ID: {u[0]}, Nombre: {u[1]}, Edad: {u[2]}")
+    else:
+        print(f"No hay usuarios en {ciudad}")
+    print()
+
+
+# Comprobar si un usuario existe por su ID
+def comprobar_usuario():
+    id_buscar = input("Introduce el ID del usuario: ")
+    for u in usuarios:
+        if u[0] == id_buscar:
+            print("El usuario existe:")
+            print(f"ID: {u[0]}, Nombre: {u[1]}, Edad: {u[2]}, Ciudad: {u[3]}\n")
+            return
+    print("El usuario no existe\n")  
     
 if __name__=="__main__":
     main()
