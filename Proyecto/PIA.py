@@ -126,11 +126,13 @@ def añadir_usuario():
                 return
         nombre = input("Nombre: ")
         edad = int(input("Edad: "))
-        ciudad = input("Ciudad: ")
-        usuario = (id_usuario, nombre, edad, ciudad)
-        usuarios.append(usuario)
-        print("")
-        print("Usuario añadido correctamente")
+        if edad > 0:          
+            ciudad = input("Ciudad: ")
+            usuario = (id_usuario, nombre, edad, ciudad)
+            usuarios.append(usuario)
+            print("")
+            print("Usuario añadido correctamente")
+        else: print("No puedes tener una edad negativa")
     except ValueError:
         print("Error, la edad introducida no es un numero")
     
@@ -184,8 +186,10 @@ def añadir_productos():
         try:
             precio_cadena=str(input("Introduzca el precio: "))
             precio_numero=float(precio_cadena) #esto convierte a float una cadena ya que no existe variables double en python
-            productos[nombre]=precio_numero #al convertirlo podemos comprobar si el precio es numerico 
-            print("Producto añadido")
+            if precio_numero > 0:
+                productos[nombre]=precio_numero #al convertirlo podemos comprobar si el precio es numerico 
+                print("Producto añadido")
+            else: print("No se pueden poner precios con valor negativo")
         except ValueError:
             print("No has metido un precio en formato numerico")
 
@@ -202,10 +206,12 @@ def modificar_precios():
             print("Este producto no se encuentra registrado en la base de datos, si quieres agregar use la opcion de añadir productos")
         else:
             try:
-                precio_cadena=str(input("Introduzca el nuevo precio: "))
+                precio_cadena=str(input("Introduzca el nuevo precio: "))               
                 precio_numero=float(precio_cadena) #esto convierte a float una cadena ya que no existe variables double en python
-                productos[nombre]=precio_numero #al convertirlo podemos comprobar si el precio es numerico 
-                print("Precio modificado")
+                if precio_numero > 0: #comprobamos que no haya numero negativo
+                    productos[nombre]=precio_numero #al convertirlo podemos comprobar si el precio es numerico 
+                    print("Precio modificado")
+                else: print("No se pueden poner precios con valor negativo")           
             except ValueError:
                 print("No has metido un precio en formato numerico")
     
