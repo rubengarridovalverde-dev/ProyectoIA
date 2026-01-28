@@ -6,6 +6,7 @@ def main():
     menu=True #boolean creado para poder cerrar el programa
     opcion=0
     while menu:
+        print("")
         print("Menú interactivo")
         print("_______________________")
         print("1. Añadir Usuarios")
@@ -17,6 +18,7 @@ def main():
         print("7. Salir")
         try:
             opcion=int(input("Introduzca numero asociado a la accion que quiere hacer: "))
+            print("")
             seleccionador(opcion)
             if opcion ==7: menu=False
         except ValueError:
@@ -50,6 +52,7 @@ def seleccionador(numero):
 def submenu_productos():
     submenu=True
     while submenu:
+        print("")
         print("Modificar Productos")
         print("_______________________")
         print("1. Añadir Productos")
@@ -58,6 +61,7 @@ def submenu_productos():
         print("4. Volver al menu principal")
         try:
             opcion_productos=int(input("Introduzca numero asociado a la accion que quiere hacer: "))
+            print("")
             seleccionador_productos(opcion_productos)
             if opcion_productos ==4: submenu=False
         except ValueError:
@@ -86,6 +90,7 @@ def añadir_usuario():
         ciudad = input("Ciudad: ")
         usuario = (id_usuario, nombre, edad, ciudad)
         usuarios.append(usuario)
+        print("")
         print("Usuario añadido correctamente")
     except ValueError:
         print("Error, la edad introducida no es un numero")
@@ -103,6 +108,7 @@ def añadir_productos():
     nombre=str(input("Ingrese el nombre de su producto: "))
     if nombre in productos:
         print("Este producto ya se encuentra en la base de datos, si desea eliminar o modificar precio use la opcion correspondiente")
+       
     else: 
         try:
             precio_cadena=str(input("Introduzca el precio: "))
@@ -113,24 +119,30 @@ def añadir_productos():
        
    
     
-def modificar_precios():  
-    nombre=str(input("Ingrese el nombre de su producto al cual quiera cambiar el precio: "))
-    if nombre not in productos:       
-        print("Este producto no se encuentra registrado en la base de datos, si quieres agregar use la opcion de añadir productos")
-    else:
-        try:
-            precio_cadena=str(input("Introduzca el nuevo precio: "))
-            precio_numero=float(precio_cadena) 
-            productos[nombre]=precio_numero 
-        except ValueError:
-            print("No has metido un precio en formato numerico")
+def modificar_precios(): 
+    if not productos: 
+        print("No hay productos registrados")
+    else: 
+        nombre=str(input("Ingrese el nombre de su producto al cual quiera cambiar el precio: "))
+        if nombre not in productos:       
+            print("Este producto no se encuentra registrado en la base de datos, si quieres agregar use la opcion de añadir productos")
+        else:
+            try:
+                precio_cadena=str(input("Introduzca el nuevo precio: "))
+                precio_numero=float(precio_cadena) 
+                productos[nombre]=precio_numero 
+            except ValueError:
+                print("No has metido un precio en formato numerico")
     
 def eliminar_productos():
-    nombre=str(input("Ingrese el nombre del producto a eliminar: "))
-    if nombre not in productos:
-        print("Este producto no se encuentra registrado en la base de datos")
+    if not productos: 
+        print("No hay productos registrados")
     else:
-        del productos[nombre]
+        nombre=str(input("Ingrese el nombre del producto a eliminar: "))
+        if nombre not in productos:
+            print("Este producto no se encuentra registrado en la base de datos")
+        else:
+            del productos[nombre]
     
 def mostrar_catalogo():
     if not productos: 
