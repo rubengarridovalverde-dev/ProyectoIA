@@ -11,7 +11,7 @@ def main():
         print("_______________________")
         print("1. Añadir Usuarios")
         print("2. Mostrar Usuarios")
-        print("3. Añadir Producto")
+        print("3. Modificar Productos")
         print("4. Mostrar Productos")
         print("5. Estadisticas")
         print("6. Busquedas")
@@ -33,7 +33,7 @@ def seleccionador(numero):
     elif numero==2:
         print("Funcion 2")
     elif numero==3:
-        añadir_productos()
+        submenu_productos()      
     elif numero==4:
         mostrar_catalogo()
     elif numero==5:
@@ -44,6 +44,31 @@ def seleccionador(numero):
         print("Gracias por usar nuestra aplicacion")
     else:
         print("Opcion no asociada a ninguna accion")
+
+
+def submenu_productos():
+    print("Modificar Productos")
+    print("_______________________")
+    print("1. Añadir Productos")
+    print("2. Eliminar Productos")
+    print("3. Modificar Precios")
+
+    try:
+        opcion_productos=int(input("Introduzca numero asociado a la accion que quiere hacer: "))
+        seleccionador_productos(opcion_productos)
+    except ValueError:
+        print("No has metido un precio en formato numerico")
+ 
+ 
+       
+def seleccionador_productos(opcion):
+        
+    if opcion==1:
+        añadir_productos()
+    elif opcion==2:
+        eliminar_productos()
+    elif opcion==3:
+        modificar_precios()
 
 
 
