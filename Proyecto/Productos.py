@@ -30,16 +30,20 @@ def main():
 def seleccionador(numero):
     if numero == 1:
         print("Funcion 1")    
+         #poner aqui la opcion de añadir usuarios
     elif numero==2:
         print("Funcion 2")
+         #poner aqui la opcion de mostrar usuarios
     elif numero==3:
         submenu_productos()      
     elif numero==4:
         mostrar_catalogo()
     elif numero==5:
         print("Funcion 5")
+         #poner aqui la opcion de estadisticas
     elif numero==6:
         print("Funcion 6")
+         #poner aqui la opcion de busquedas
     elif numero==7:
         print("Gracias por usar nuestra aplicacion")
     else:
@@ -69,6 +73,8 @@ def seleccionador_productos(opcion):
         eliminar_productos()
     elif opcion==3:
         modificar_precios()
+    else:
+        print("Opcion no asociada a ninguna accion")
 
 
 
