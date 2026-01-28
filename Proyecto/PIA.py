@@ -27,8 +27,7 @@ def main():
        
    
 
-        
-    
+           
 def seleccionador(numero):
     #selector principal del menu donde se indica cada accion
     if numero == 1:
@@ -49,6 +48,7 @@ def seleccionador(numero):
         print("Opcion no asociada a ninguna accion")
 
 
+
 def submenu_productos():
     submenu=True
     while submenu:
@@ -63,10 +63,12 @@ def submenu_productos():
             opcion_productos=int(input("Introduzca numero asociado a la accion que quiere hacer: "))
             print("")
             seleccionador_productos(opcion_productos)
-            if opcion_productos == 4: submenu=False #boolean con funcion de cerra el submenu de productos
+            if opcion_productos == 4: submenu=False #boolean con funcion de cerrar el submenu de productos
         except ValueError:
             print("No has metido un precio en formato numerico")
-            
+
+
+
 def seleccionador_productos(opcion):
     #aqui se comprueba que hacer en cada opcion del submenu de productos
     if opcion==1:
@@ -79,7 +81,9 @@ def seleccionador_productos(opcion):
         print("")
     else:
         print("Opcion no asociada a ninguna accion")
-        
+
+
+
 def submenu_busquedas():
     #submenu de la opcion de busqueda 
     submenu=True
@@ -98,7 +102,8 @@ def submenu_busquedas():
         except ValueError:
             print("No has metido un precio en formato numerico")
  
-       
+
+
 def seleccionador_busqueda(opcion):
      #aqui se comprueba que hacer cada opcion del submenu busqueda
     if opcion==1:
@@ -109,6 +114,8 @@ def seleccionador_busqueda(opcion):
         print("")
     else:
         print("Opcion no asociada a ninguna accion")
+
+
 
 def añadir_usuario():  
     try:
@@ -127,12 +134,16 @@ def añadir_usuario():
     except ValueError:
         print("Error, la edad introducida no es un numero")
     
+
+
 def mostrar_usuarios():
     if not usuarios: #este if hace que si no hay informacion en la base de datos sobre usuarios lo indique
         print("No hay usuarios registrados")
     else:
         print("Lista de usuarios:")
         print(usuarios)
+
+
 
 def estadisticas():
     if len(usuarios) == 0:
@@ -162,6 +173,8 @@ def estadisticas():
         print("Precio medio de los productos",media)
         print()
 
+
+
 def añadir_productos():  
     nombre=str(input("Ingrese el nombre de su producto: "))
     if nombre in productos:
@@ -175,8 +188,8 @@ def añadir_productos():
             print("Producto añadido")
         except ValueError:
             print("No has metido un precio en formato numerico")
-       
-   
+
+
     
 def modificar_precios(): 
     if not productos: 
@@ -190,12 +203,14 @@ def modificar_precios():
         else:
             try:
                 precio_cadena=str(input("Introduzca el nuevo precio: "))
-                precio_numero=float(precio_cadena) 
-                productos[nombre]=precio_numero 
+                precio_numero=float(precio_cadena) #esto convierte a float una cadena ya que no existe variables double en python
+                productos[nombre]=precio_numero #al convertirlo podemos comprobar si el precio es numerico 
                 print("Precio modificado")
             except ValueError:
                 print("No has metido un precio en formato numerico")
     
+
+
 def eliminar_productos():
     if not productos: 
         print("No hay productos registrados")
@@ -209,6 +224,8 @@ def eliminar_productos():
             del productos[nombre]
             print("Producto eliminado")
     
+
+
 def mostrar_catalogo():
     if not productos: #este if hace que si no hay informacion en la base de datos sobre productos lo indique
         print("No hay productos que mostrar")
@@ -227,6 +244,7 @@ def buscar_por_ciudad():
     print()
 
 
+
 # Comprobar si un usuario existe por su ID
 def comprobar_usuario():
     id_buscar = input("Introduce el ID del usuario: ")
@@ -238,9 +256,4 @@ def comprobar_usuario():
             print("El usuario no existe\n")  
     
 if __name__=="__main__":
-    main()
-
-    
-    
-    
-    
+    main() 
