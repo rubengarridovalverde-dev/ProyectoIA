@@ -1,5 +1,5 @@
-productos={}
-usuarios = []
+productos={} #dicionario que almacena los productos
+usuarios = [] #lista que guarda las duplas de usuarios
 
 
 def main():
@@ -50,6 +50,7 @@ def seleccionador(numero):
 
 
 def submenu_productos():
+    #submenu del apartado modificar productos
     submenu=True
     while submenu:
         print("")
@@ -118,7 +119,8 @@ def seleccionador_busqueda(opcion):
 
 
 def añadir_usuario():  
-    try:
+    #metodo para añadir usuarios
+    try: #try para que la edad se introduzca numerica
         id_usuario = input("ID del usuario: ")
         for u in usuarios: #aqui uso el mismo bucle que en buscar usuario por id para que no se creen dos con el mismo id
             if u[0] == id_usuario:
@@ -126,7 +128,7 @@ def añadir_usuario():
                 return
         nombre = input("Nombre: ")
         edad = int(input("Edad: "))
-        if edad > 0:          
+        if edad > 0:     #comprobacion de que el usuario no tenga edad negativa     
             ciudad = input("Ciudad: ")
             usuario = (id_usuario, nombre, edad, ciudad)
             usuarios.append(usuario)
@@ -148,7 +150,8 @@ def mostrar_usuarios():
 
 
 def estadisticas():
-    if len(usuarios) == 0:
+    #este metodo calcula las estadisticas pedidas
+    if len(usuarios) == 0: #comprueba si hay usuarios o productos, ya que sin ellos no se pueden hacer las estadisticas
         print("No hay usuarios registrados\n")
         return
     elif not productos:
@@ -178,15 +181,16 @@ def estadisticas():
 
 
 def añadir_productos():  
+    #metodo para añadir productos al diccionario
     nombre=str(input("Ingrese el nombre de su producto: "))
-    if nombre in productos:
+    if nombre in productos: #detecta si hay un producto creado con el mismo nombre
         print("Este producto ya se encuentra en la base de datos, si desea eliminar o modificar precio use la opcion correspondiente")
        
     else: 
         try:
             precio_cadena=str(input("Introduzca el precio: "))
             precio_numero=float(precio_cadena) #esto convierte a float una cadena ya que no existe variables double en python
-            if precio_numero > 0:
+            if precio_numero > 0: #comprueba que no se introduzca un precio negativo
                 productos[nombre]=precio_numero #al convertirlo podemos comprobar si el precio es numerico 
                 print("Producto añadido")
             else: print("No se pueden poner precios con valor negativo")
@@ -199,10 +203,10 @@ def modificar_precios():
     if not productos: 
         print("No hay productos registrados")
     else: 
-        print("Productos disponibles a modificar")
+        print("Productos disponibles a modificar") #muestra todos los productos disponibles a modificacion
         mostrar_catalogo()
         nombre=str(input("Ingrese el nombre de su producto al cual quiera cambiar el precio: "))
-        if nombre not in productos:       
+        if nombre not in productos:    #esto detecta si el producto que se quiere modificar existe en la base  
             print("Este producto no se encuentra registrado en la base de datos, si quieres agregar use la opcion de añadir productos")
         else:
             try:
@@ -219,9 +223,9 @@ def modificar_precios():
 
 def eliminar_productos():
     if not productos: 
-        print("No hay productos registrados")
+        print("No hay productos registrados") 
     else:
-        print("Productos disponibles a modificar")
+        print("Productos disponibles a modificar") #muestra todos los productos disponibles a eliminacion
         mostrar_catalogo()
         nombre=str(input("Ingrese el nombre del producto a eliminar: "))
         if nombre not in productos:
@@ -238,6 +242,7 @@ def mostrar_catalogo():
     else: print(productos)
   
 def buscar_por_ciudad():
+    # Buscar a los usuarios por ciudad
     ciudad = input("Introduce la ciudad a buscar: ")
     encontrados = [u for u in usuarios if u[3].lower() == ciudad.lower()]
 
@@ -251,8 +256,8 @@ def buscar_por_ciudad():
 
 
 
-# Comprobar si un usuario existe por su ID
 def comprobar_usuario():
+    # Comprobar si un usuario existe por su ID
     id_buscar = input("Introduce el ID del usuario: ")
     for u in usuarios:
         if u[0] == id_buscar:
