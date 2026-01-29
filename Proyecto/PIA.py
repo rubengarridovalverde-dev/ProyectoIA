@@ -23,7 +23,7 @@ def main():
             seleccionador(opcion)
             if opcion ==7: menu=False
         except ValueError:
-            print("No has metido un precio en formato numerico")
+            print("No has metido un numero")
        
    
 
@@ -65,7 +65,7 @@ def submenu_productos():
             seleccionador_productos(opcion_productos)
             if opcion_productos == 4: submenu=False #boolean con funcion de cerrar el submenu de productos
         except ValueError:
-            print("No has metido un precio en formato numerico")
+            print("No has metido un numero")
 
 
 
@@ -100,7 +100,7 @@ def submenu_busquedas():
             seleccionador_busqueda(opcion_busqueda)
             if opcion_busqueda == 3: submenu=False #este boolean sirve para cerrar el submenu
         except ValueError:
-            print("No has metido un precio en formato numerico")
+            print("No has metido un numero")
  
 
 
