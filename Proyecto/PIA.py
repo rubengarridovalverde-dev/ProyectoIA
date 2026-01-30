@@ -259,12 +259,14 @@ def buscar_por_ciudad():
 def comprobar_usuario():
     # Comprobar si un usuario existe por su ID
     id_buscar = input("Introduce el ID del usuario: ")
+    if not usuarios:print("El usuario no existe\n") 
     for u in usuarios:
         if u[0] == id_buscar:
             print("El usuario existe:")
             print(f"ID: {u[0]}, Nombre: {u[1]}, Edad: {u[2]}, Ciudad: {u[3]}\n")
         else: 
             print("El usuario no existe\n")  
+    
     
 if __name__=="__main__":
     main() 
